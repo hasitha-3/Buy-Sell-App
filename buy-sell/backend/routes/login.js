@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 
 // Middleware to parse JSON request body
 dotenv.config();
+const JWT_SECRET = process.env.SECRET_KEY || "buy_sell_rent_secret_key";
 // Login route with POST method
 login_api.post('/', async (req, res) => {
     console.log("Login route hit");
@@ -28,7 +29,11 @@ login_api.post('/', async (req, res) => {
         // console.log(user);
         // console.log("Login successful");
         // Respond with user data (excluding sensitive data like password)
-        const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY);
+        if (!JWT_SECRET) {
+            return res.status(500).json({ message: "JWT secret is not configured" });
+        }
+
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET);
         res.status(200).json({
             token,userInfo:user
         });

@@ -88,41 +88,44 @@ const Registration = () => {
   };
 
   return (
-    <div className="bg-gray-400 h-screen flex justify-center items-center">
-      <form className="bg-gray-300 p-10" onSubmit={CreateAcc}>
-        <div className="grid">
-          <p className="italic mx-2 font-semibold">User Name:</p>
+    <div className="min-h-screen flex justify-center items-center px-4 py-10">
+      <form className="glass-card w-full max-w-xl p-8 rounded-2xl" onSubmit={CreateAcc}>
+        <h1 className="hero-title text-3xl font-bold mb-1">Create Account</h1>
+        <p className="text-sm text-slate-600 mb-6">Join the marketplace in less than a minute.</p>
+
+        <div className="grid gap-1 mb-4">
+          <p className="text-sm font-semibold">User Name</p>
           <input
             placeholder="First Name"
             type="text"
-            className="bg-gray-200 px-3 py-1 my-1"
+            className="field"
             value={firstname}
             onChange={(e) => setFirst(e.target.value)}
           />
           <input
             placeholder="Last Name"
             type="text"
-            className="bg-gray-200 px-3 py-1 my-1"
+            className="field mt-2"
             value={lastname}
             onChange={(e) => setLast(e.target.value)}
           />
         </div>
 
-        <div className="grid">
-          <p className="italic mx-2 font-semibold">Email:</p>
+        <div className="grid gap-1 mb-4">
+          <p className="text-sm font-semibold">Email</p>
           <input
             placeholder="Email address"
             type="text"
-            className="bg-gray-200 px-3 py-1 my-1"
+            className="field"
             value={EmailAdress}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
-        <div className="flex">
-          <p className="italic mx-2 font-semibold my-1">Age:</p>
+        <div className="grid gap-1 mb-4">
+          <p className="text-sm font-semibold">Age</p>
           <input
-            className="bg-gray-200 px-3 py-1 my-1"
+            className="field"
             type="number"
             min="1"
             value={age}
@@ -130,23 +133,23 @@ const Registration = () => {
           />
         </div>
 
-        <div className="grid">
-          <p className="italic mx-2 font-semibold">Contact No.</p>
+        <div className="grid gap-1 mb-4">
+          <p className="text-sm font-semibold">Contact No.</p>
           <input
             placeholder="Contact No."
             type="number"
-            className="bg-gray-200 px-3 py-1"
+            className="field"
             value={number}
             onChange={(e) => setnumb(e.target.value)}
           />
         </div>
 
-        <div className="grid">
-          <p className="italic mx-2 font-semibold">Password:</p>
+        <div className="grid gap-1 mb-4">
+          <p className="text-sm font-semibold">Password</p>
           <input
             placeholder="Enter Password"
             type="password"
-            className="bg-gray-200 px-3 py-1"
+            className="field"
             value={password}
             onChange={(e) => setpassword(e.target.value)}
           />
@@ -154,7 +157,7 @@ const Registration = () => {
 
         <button
           type="submit"
-          className="flex justify-center items-center text-center bg-gray-400 px-2 my-1 py-1 w-full"
+          className="btn-primary flex justify-center items-center text-center px-2 my-1 py-2 w-full rounded-xl font-semibold"
         >
           Create Account
         </button>

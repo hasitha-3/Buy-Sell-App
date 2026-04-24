@@ -13,17 +13,14 @@ import find_items from './routes/find_items.js';
 dotenv.config();
 
 const mongoURI = process.env.MONGODB_URI;
-const PORT = 8000;
+const PORT = Number(process.env.PORT) || 8000;
 const app = express();
 
 app.use(cors());
 app.use(express.json()); // For parsing JSON requests
 app.use(express.urlencoded({ extended: false }));
 
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(mongoURI)
     .then(() => console.log("Connected to MongoDB Atlas"))
     .catch((err) => console.error("Error connecting to MongoDB", err));
 
@@ -53,6 +50,16 @@ const authenticateToken = (req, res, next) => {
 };
 
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is running at ${PORT}`);
+});
+
+server.on("error", (error) => {
+    if (error.code === "EADDRINUSE") {
+        console.error(
+            `Port ${PORT} is already in use. Stop the previous server process or run with a different PORT in .env.`
+        );
+        return;
+    }
+    console.error("Server startup error:", error);
 });

@@ -1,1 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700&display=swap");
 @import "tailwindcss";
+
+:root {
+	--bg-main: #f4f7fb;
+	--bg-accent: #e2f0ff;
+	--surface: #ffffff;
+	--surface-2: #eef4ff;
+	--text-main: #10213c;
+	--text-muted: #52627f;
+	--brand: #0f7bff;
+	--brand-dark: #0b5fc4;
+	--danger: #e5484d;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	font-family: "Space Grotesk", sans-serif;
+	color: var(--text-main);
+	background:
+		radial-gradient(circle at 10% 20%, rgba(15, 123, 255, 0.16), transparent 35%),
+		radial-gradient(circle at 90% 10%, rgba(253, 186, 116, 0.2), transparent 28%),
+		linear-gradient(170deg, var(--bg-main), var(--bg-accent));
+}
+
+#root {
+	min-height: 100vh;
+}
+
+.glass-card {
+	background: rgba(255, 255, 255, 0.78);
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	box-shadow: 0 20px 50px rgba(18, 57, 112, 0.12);
+	backdrop-filter: blur(10px);
+}
+
+.hero-title {
+	font-family: "Sora", sans-serif;
+}
+
+.btn-primary {
+	background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+	color: #fff;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 10px 24px rgba(15, 123, 255, 0.35);
+}
+
+.btn-danger:hover {
+	background: var(--danger);
+	color: #fff;
+}
+
+.field {
+	border: 1px solid #d4dcec;
+	background: #f8faff;
+	border-radius: 10px;
+	padding: 0.6rem 0.75rem;
+	outline: none;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field:focus {
+	border-color: var(--brand);
+	box-shadow: 0 0 0 3px rgba(15, 123, 255, 0.18);
+}

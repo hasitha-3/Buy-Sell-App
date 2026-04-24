@@ -48,11 +48,11 @@ function Navbar() {
 
 
 return (
-  <nav className="py-2 flex justify-center gap-x-10 items-center">
+  <nav className="glass-card mx-4 mt-4 rounded-2xl px-4 py-3 flex flex-wrap justify-center gap-3 items-center">
     {/* Profile button */}
     <button
       onClick={profile_handle}
-      className="rounded-2xl text-sm px-4 h-10 hover:border content-center"
+      className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       Profile
     </button>
@@ -60,7 +60,7 @@ return (
     {/* Home Link */}
     <Link
       to="/Home"
-      className="rounded-2xl text-sm px-4 h-10 hover:border content-center"
+      className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       Home
     </Link>
@@ -68,7 +68,7 @@ return (
     {/* Cart Link */}
     <Link
       to="/Cart"
-      className="rounded-2xl text-sm px-4 h-10 hover:border content-center"
+      className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       Cart
     </Link>
@@ -77,11 +77,12 @@ return (
     <div className="flex items-center ">
       <input value={search} onChange={(e) => setSearch(e.target.value)}
         type="text"
-        className="bg-gray-300 h-10 px-2 rounded"
+        className="field h-10 px-3 min-w-52"
+        placeholder="Search products"
       />
     </div>
     <div >
-      <select value={category} onChange={(e) => setCategory(e.target.value)} className="bg-gray-300 h-10 rounded">
+      <select value={category} onChange={(e) => setCategory(e.target.value)} className="field h-10 rounded">
         <option value="Electronics">Electronics</option>
         <option value="Cloths">Cloths</option>
         <option value="Stationary">Stationary</option>
@@ -90,13 +91,13 @@ return (
       </select>
     </div>
 
-    <button onClick={handle_search} className="bg-gray-300 rounded text-sm px-4 h-10 hover:border">
+    <button onClick={handle_search} className="btn-primary rounded-xl text-sm px-4 h-10">
       Search
     </button>
     {/* Orders Link */}
     <Link
       to="/Orders"
-      className="rounded-2xl text-sm px-4 h-10 hover:border content-center"
+      className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       Orders
     </Link>
@@ -104,7 +105,7 @@ return (
     {/* History Link */}
     <Link
       to="/History"
-      className="rounded-2xl text-sm px-4 h-10 hover:border content-center"
+      className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       History
     </Link>
@@ -112,7 +113,7 @@ return (
     {/* Logout Button */}
     <button
       onClick={handleLogout}
-      className="hover:bg-red-500 rounded-2xl text-sm h-8 px-4 hover:drop-shadow-md content-center"
+      className="btn-danger rounded-xl text-sm h-10 px-4 hover:drop-shadow-md content-center"
     >
       Logout
     </button>

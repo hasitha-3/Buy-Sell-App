@@ -25,13 +25,13 @@ const { info } = useAppContext();
     };
 
     return (
-        <div className="bg-gray-300 p-5 rounded">
-            <h2 className="text-4xl">{itemname}</h2>
-            <p>Category: {itemcategory}</p>
-            <p>{itemdescription}</p>
-            <p>Price: ${itemprice}</p>
+        <div className="glass-card p-5 rounded-2xl w-80">
+            <h2 className="hero-title text-2xl font-bold mb-2">{itemname}</h2>
+            <p className="text-sm text-slate-500 mb-2">Category: {itemcategory}</p>
+            <p className="text-sm text-slate-700 min-h-16">{itemdescription}</p>
+            <p className="mt-3 font-semibold text-xl">${itemprice}</p>
             <div>
-                <button className="bg-gray-600 rounded p-1 px-2 w-full" onClick={handle_add_to_cart}>
+                <button className="btn-primary rounded-xl p-2 px-2 w-full mt-4" onClick={handle_add_to_cart}>
                     Add to Cart
                 </button>
             </div>

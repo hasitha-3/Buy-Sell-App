@@ -57,11 +57,12 @@ function ItemsShow() {
     return (
         <>
             <Navbar />
-            <div className="bg-gray-400 w-full h-screen flex flex-col items-center">
-                <h1 className="text-4xl font-bold mt-4 mb-4">Items</h1>
-                <div className="flex flex-wrap gap-4 justify-center items-center">
+            <div className="w-full min-h-screen flex flex-col items-center px-4 pb-8">
+                <h1 className="hero-title text-4xl font-bold mt-8 mb-6">Items</h1>
+                <div className="flex flex-wrap gap-5 justify-center items-stretch">
                     {items.map((item, index) => (
                         <ItemLayout
+                            key={item._id || index}
                             item_info={item}
                         />
                     ))}

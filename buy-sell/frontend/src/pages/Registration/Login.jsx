@@ -61,40 +61,46 @@ const Login = () => {
   }, [info]); // This will trigger when `info` changes
 
   return (
-    <div className='bg-gray-400 h-screen flex justify-center items-center'>
+    <div className='min-h-screen flex justify-center items-center px-4'>
       <Toaster />
-      <form className='bg-gray-300 p-10' onSubmit={handleLogin}>
-        <div className='grid'>
-          <p className='italic mx-2 font-semibold'>Email:</p>
+      <form className='glass-card w-full max-w-md p-8 rounded-2xl' onSubmit={handleLogin}>
+        <h1 className='hero-title text-3xl font-bold mb-1'>Welcome Back</h1>
+        <p className='text-sm text-slate-600 mb-6'>Log in to continue buying, selling, and renting.</p>
+
+        <div className='grid gap-1 mb-4'>
+          <p className='text-sm font-semibold'>Email</p>
           <input
             type='email'
             placeholder='Enter Email'
             value={Email}
             onChange={handleEmailChange}
-            className='bg-gray-200 px-3 py-1'
+            className='field'
             required
           />
         </div>
-        <div className='grid'>
-          <p className='italic mx-2 font-semibold'>Password:</p>
+
+        <div className='grid gap-1 mb-5'>
+          <p className='text-sm font-semibold'>Password</p>
           <input
             type='password'
             placeholder='Enter Password'
             value={password}
             onChange={handlePasswordChange}
-            className='bg-gray-200 px-3 py-1'
+            className='field'
             required
           />
         </div>
+
         <button
           type='submit'
-          className='bg-gray-400 my-2 w-full px-3 hover:shadow-2xl hover:scale-103 py-1'
+          className='btn-primary my-2 w-full px-3 py-2 rounded-xl font-semibold'
         >
-          Enter
+          Enter Marketplace
         </button>
-        <div className='flex justify-center items-center w-full text-sm'>
+
+        <div className='flex justify-center items-center w-full text-sm mt-3 text-slate-700'>
           Don't have an account?{' '}
-          <Link to='/Registration' className='hover:text-orange-300'>
+          <Link to='/Registration' className='ml-1 text-blue-700 font-semibold hover:underline'>
             Sign Up
           </Link>
         </div>

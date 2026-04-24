@@ -48,26 +48,27 @@ function Seller() {
 
 
     return (
-        <div className="bg-gray-400 w-full min-h-screen">
+        <div className="w-full min-h-screen">
             <Navbar />
-            <div className="flex justify-center items-center min-h-screen">
-                <div className="bg-gray-200 grid py-10 px-20 rounded w-fit">
+            <div className="flex justify-center items-center min-h-[calc(100vh-100px)] px-4 py-8">
+                <div className="glass-card grid py-10 px-8 md:px-14 rounded-2xl w-full max-w-2xl">
+                    <h1 className="hero-title text-3xl font-bold mb-5">List an Item</h1>
                     <form>
                         <div>
-                            <p className="font-semibold mb-1">Name:</p>
-                            <input type='text' value={name} onChange={(e)=>setName(e.target.value)} className="px-2 py-1 mb-2 border-2 rounded w-full" />
+                            <p className="font-semibold mb-1">Name</p>
+                            <input type='text' value={name} onChange={(e)=>setName(e.target.value)} className="field mb-3 w-full" />
                         </div>
                         <div>
-                            <p className="font-semibold mb-1">Price:</p>
-                            <input type='number' value={price} onChange={(e)=>setPrice(e.target.value)} className="px-2 py-1 mb-2 border-2 rounded w-full" />    
+                            <p className="font-semibold mb-1">Price</p>
+                            <input type='number' value={price} onChange={(e)=>setPrice(e.target.value)} className="field mb-3 w-full" />    
                         </div>
                         <div>
-                            <p className="font-semibold mb-1">Description:</p>
-                            <textarea value={description} onChange={(e)=>setDescription(e.target.value)} className="px-2 py-1 mb-2 border-2 rounded w-full" />    
+                            <p className="font-semibold mb-1">Description</p>
+                            <textarea value={description} onChange={(e)=>setDescription(e.target.value)} className="field mb-3 w-full min-h-24" />    
                         </div>
                         <div>
-                            <p className="font-semibold mb-1">Category:</p>
-                            <select value={category} onChange={(e)=>setCategory(e.target.value)} className="px-2 py-1 mb-2 border-2 rounded w-full">
+                            <p className="font-semibold mb-1">Category</p>
+                            <select value={category} onChange={(e)=>setCategory(e.target.value)} className="field mb-2 w-full">
                                 <option value="Electronics">Electronics</option>
                                 <option value="Cloths">Cloths</option>
                                 <option value="Stationary">Stationary</option>
@@ -75,7 +76,7 @@ function Seller() {
                                 <option value="Fitness">Fitness</option>
                             </select>
                         </div>
-                        <button type="submit" onClick={handle_add} className="bg-gray-400 px-2 py-1 mt-4 rounded w-full">Add</button>
+                        <button type="submit" onClick={handle_add} className="btn-primary px-2 py-2 mt-4 rounded-xl w-full font-semibold">Add Item</button>
                         <Toaster />
                     </form>
                 </div>
