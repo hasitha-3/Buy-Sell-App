@@ -8,9 +8,9 @@ function ItemsShow() {
     const { search: paramSearch, category: paramCategory } = useParams();
     const [items, setItems] = useState([]);
     const { info } = useAppContext();
-    // Swap search and category (avoiding direct reassignment)
-    const search = paramCategory;
-    const category = paramSearch;
+    // Use parameters correctly (no swapping)
+    const category = paramCategory;
+    const search = paramSearch;
 
     useEffect(() => {
         setItems([]); // Clear items before fetching new ones

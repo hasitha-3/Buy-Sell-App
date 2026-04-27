@@ -9,6 +9,8 @@ import login_api from './routes/login.js';
 import jwt from 'jsonwebtoken';
 import add_item from './routes/add_item.js';
 import find_items from './routes/find_items.js';
+import add_to_cart from './routes/add_to_cart.js';
+import orders_api from './routes/orders.js';
 
 dotenv.config();
 
@@ -34,6 +36,9 @@ app.use('/login', login_api);
 
 app.use('/add_item', add_item);
 
+app.use('/cart', add_to_cart);
+
+app.use('/orders', orders_api);
 
 app.use('/Home',find_items);
 

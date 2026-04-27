@@ -1,10 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import Navbar from './Navbar'
-import Catagories from './Catagories'
-import Item_layout from '../Item/Item_layout'
+import ItemLayout from '../Item/Item_layout'
+import { useAppContext } from '../../MyContext'
+
 function Home() {
-  // console.log("Home")
+  const [featuredItems, setFeaturedItems] = useState([])
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
+  const { info } = useAppContext()
+
+  useEffect(() => {
+    const fetchFeaturedItems = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/Home/all/items')
+        if (response.status === 200) {
+          // Filter items (exclude seller's own items)
+          const filtered = response.data.filter(item => item.seller_id !== info.userId)
+          // Show only 6 featured items
+          setFeaturedItems(filtered.slice(0, 6))
+        }
+      } catch (error) {
+        console.error('Error fetching items:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchFeaturedItems()
+  }, [info.userId])
+
   return (
     <div className='min-h-screen'>
       <Navbar />
@@ -23,9 +49,54 @@ function Home() {
           Sell Now
         </Link>
       </div>
-      {/* <p className='text-4xl font-bold my-3'>Catagories.</p> */}
-      
 
+      {/* Featured Items Section */}
+      <div className='px-4 py-8'>
+        <h2 className='hero-title text-3xl font-bold mb-6'>Featured Products</h2>
+        
+        {loading ? (
+          <p className='text-center text-slate-600'>Loading items...</p>
+        ) : featuredItems.length > 0 ? (
+          <div className='flex flex-wrap gap-5 justify-center'>
+            {featuredItems.map((item) => (
+              <ItemLayout
+                key={item._id}
+                item_info={item}
+                userId={info.userId}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className='text-center text-slate-600'>No items available yet. Start selling!</p>
+        )}
+
+        {featuredItems.length > 0 && (
+          <div className='text-center mt-8'>
+            <button 
+              onClick={() => navigate('/home/Electronics')}
+              className='btn-primary rounded-xl px-6 py-3 text-lg'
+            >
+              Browse All Products →
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Categories Section */}
+      <div className='px-4 py-8'>
+        <h2 className='hero-title text-3xl font-bold mb-6'>Shop by Category</h2>
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
+          {['Electronics', 'Fitness', 'Cloths', 'Stationary', 'Food'].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => navigate(`/home/${cat}`)}
+              className='glass-card py-8 px-4 rounded-2xl text-center hover:bg-white/20 transition text-lg font-semibold'
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

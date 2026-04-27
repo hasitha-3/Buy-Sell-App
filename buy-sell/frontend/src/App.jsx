@@ -10,6 +10,7 @@ import Login from './pages/Registration/Login';
 import { AppProvider } from './MyContext';
 import Seller from './pages/Home/Seller';
 import Items_show from './pages/Item/Items_show';
+import MyListings from './pages/MyListings/MyListings';
 
 const ProtectedRoute = ({ element }) => {
   const token = localStorage.getItem("userToken");
@@ -33,6 +34,7 @@ function App() {
           <Route path='/registration' element={<Registration />} />
           <Route path='/orders' element={<ProtectedRoute element={<Orders />} />} />
           <Route path='/seller' element={<ProtectedRoute element={<Seller />} />} />
+          <Route path='/my-listings' element={<ProtectedRoute element={<MyListings />} />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>

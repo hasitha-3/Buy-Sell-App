@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose';
 
 const cart_item = new mongoose.Schema({
@@ -6,12 +5,13 @@ const cart_item = new mongoose.Schema({
     itemprice: { type: Number, required: true },
     itemcategory: { type: String, required: true },
     itemdescription: { type: String, required: true },
-    seller_id: { type: String, required: true }, // Ensure this is defined
-    buyyer_id: { type: String, required: true }, // Ensure this is defined
-    status_item: { type: Number, required: true }, // Ensure this is defined
+    seller_id: { type: String, required: true }, 
+    buyyer_id: { type: String, required: true }, 
+    quantity: { type: Number, required: true, default: 1 },
+    status_item: { type: Number, required: true, default: 0 }, // 0 = in cart, 1 = ordered
+    createdAt: { type: Date, default: Date.now }
 });
 
-// Create the model from the schema
-const cart_items = mongoose.model('items_data', cart_item);
+const cart_items = mongoose.model('cart_items', cart_item);
 
 export default cart_items;

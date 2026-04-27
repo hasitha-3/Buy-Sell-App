@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../MyContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 
 
@@ -10,6 +11,31 @@ function Navbar() {
   const { info, change_info } = useAppContext();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Electronics");
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    fetchCartCount();
+  }, [info.userId]);
+
+  const fetchCartCount = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8000/cart/${info.userId}`);
+      const totalItems = response.data.reduce((sum, item) => sum + item.quantity, 0);
+      setCartCount(totalItems);
+    } catch (error) {
+      console.error('Error fetching cart count:', error);
+    }
+  };
+
+  const updateCartCount = () => {
+    // Called whenever item is added
+    fetchCartCount();
+  };
+
+  // Expose function to Item_layout via window
+  useEffect(() => {
+    window.updateCartFromNavbar = updateCartCount;
+  }, []);
 
   const notifye = (message) => toast.error(message);
   const notifys = (message) => toast.success(message);
@@ -42,7 +68,7 @@ function Navbar() {
     }
     else{
       // console.log("search",search,"category",category);
-      navigate(`/Home/${category}/${search}`);
+      navigate(`/home/${category}/${search}`);
     }
   };
 
@@ -59,18 +85,31 @@ return (
 
     {/* Home Link */}
     <Link
-      to="/Home"
+      to="/home"
       className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       Home
     </Link>
 
-    {/* Cart Link */}
+    {/* My Listings Link */}
     <Link
-      to="/Cart"
+      to="/my-listings"
       className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
+      My Listings
+    </Link>
+
+    {/* Cart Link */}
+    <Link
+      to="/cart"
+      className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center relative"
+    >
       Cart
+      {cartCount > 0 && (
+        <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+          {cartCount}
+        </span>
+      )}
     </Link>
 
     {/* Search Bar */}
@@ -96,7 +135,7 @@ return (
     </button>
     {/* Orders Link */}
     <Link
-      to="/Orders"
+      to="/orders"
       className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       Orders
@@ -104,7 +143,7 @@ return (
 
     {/* History Link */}
     <Link
-      to="/History"
+      to="/history"
       className="rounded-xl text-sm px-4 h-10 hover:bg-white/70 content-center"
     >
       History
