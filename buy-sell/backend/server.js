@@ -23,7 +23,7 @@ app.use(express.json()); // For parsing JSON requests
 app.use(express.urlencoded({ extended: false }));
 
 mongoose.connect(mongoURI)
-    .then(() => console.log("Connected to MongoDB Atlas"))
+    .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("Error connecting to MongoDB", err));
 
 
